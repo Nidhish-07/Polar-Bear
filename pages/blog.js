@@ -21,11 +21,11 @@ const Blog = () => {
       <main className={styles.main}>
         {blogs.map((blogItem) => {
           return (
-            <div key={blogItem.title}>
-              <Link href={`/blog/learn-javascript`}>
+            <div key={blogItem.slug}>
+              <Link href={`/blog/${blogItem.slug}`}>
                 <h1 className={styles.blogItemH3}>{blogItem.title}</h1>
               </Link>
-              <p>{blogItem.content}</p>
+              <p>{blogItem.content.substr(0, 150)}</p>
             </div>
           );
         })}

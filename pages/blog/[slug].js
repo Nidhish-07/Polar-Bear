@@ -11,7 +11,7 @@ const Slug = () => {
     <Fragment>
       <main className={styles.container}>
         <div className={styles.main}>
-          <h1>This is my page title: {slug}</h1>
+          <h1>Title: {slug}</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
             voluptate consequuntur illum inventore laborum tenetur iure
