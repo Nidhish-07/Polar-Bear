@@ -1,26 +1,31 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/BlogPost.module.css";
 const Slug = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+  // console.log(router.query.slug);
 
-  console.log(router.query.slug);
+  const [blog, setBlog] = useState();
+
+  const router = useRouter();
+  useEffect(() => {
+    return async () => {
+      if (!router.isReady) {
+        return;
+      }
+
+      const { slug } = router.query;
+      const res = await fetch(`http://localhost:3000/api/getBlog?slug=${slug}`);
+      const data = await res.json();
+      setBlog(data);
+    };
+  }, [router.isReady]);
 
   return (
     <Fragment>
       <main className={styles.container}>
         <div className={styles.main}>
-          <h1>Title: {slug}</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-            voluptate consequuntur illum inventore laborum tenetur iure
-            dignissimos consequatur a deserunt. Nesciunt eius enim quo
-            repudiandae obcaecati totam quae minus sit tempore pariatur sint
-            architecto aliquam natus aperiam voluptatem, hic, saepe porro
-            incidunt rerum in. Reprehenderit maiores obcaecati quaerat accusamus
-            excepturi?
-          </p>
+          <h1>{blog && blog.title}</h1>
+          <p>{blog && blog.content}</p>
         </div>
       </main>
     </Fragment>
