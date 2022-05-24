@@ -3,11 +3,11 @@ import * as fs from "fs";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     res.status(200).send("hello");
-    console.log(req.body);
+    // console.log(req.body);
 
     let data = await fs.promises.readdir("contactData");
     fs.promises.writeFile(
-      `contactData/${data.length+1}.json`,
+      `contactData/${data.length + 1}.json`,
       JSON.stringify(req.body),
       (err) => {
         if (err) {
@@ -17,6 +17,6 @@ export default async function handler(req, res) {
       }
     );
   } else {
-    res.status(200).send("Not a post ");
+    res.status(200).send("Not a post method");
   }
 }

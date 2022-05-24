@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 80%;
+  margin: 40px auto;
+  text-align: left;
+  /* margin-top: 40px; */
+}
+
+.heading{
+    text-align: center;
+}
