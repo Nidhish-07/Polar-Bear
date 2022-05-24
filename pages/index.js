@@ -26,7 +26,7 @@ export default function Home() {
         <Image
           className={styles.backImg}
           src="/pexels-soumil-kumar-735911 (3).jpg"
-          alt="keyboard and a hand"
+          alt="keyboard"
           width={300}
           height={200}
         />

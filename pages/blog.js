@@ -3,18 +3,10 @@ import styles from "../styles/Blog.module.css";
 import Link from "next/link";
 
 // console.log(Blogs);
-const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
+const Blog = (props) => {
+  // console.log(props);
 
-  useEffect(() => {
-    return async () => {
-      const res = await fetch("http://localhost:3000/api/blogs");
-
-      const data = await res.json();
-      // console.log(data);
-      return setBlogs(data);
-    };
-  }, []);
+  const [blogs, setBlogs] = useState(props.data);
 
   return (
     <div className={styles.container}>
@@ -25,7 +17,7 @@ const Blog = () => {
               <Link href={`/blog/${blogItem.slug}`}>
                 <h1 className={styles.blogItemH3}>{blogItem.title}</h1>
               </Link>
-              <p>{blogItem.content.substr(0, 150)}</p>
+              <p>{blogItem.metadesc}</p>
             </div>
           );
         })}
@@ -33,5 +25,14 @@ const Blog = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context) {
+  const res = await fetch("http://localhost:3000/api/blogs");
+  const data = await res.json();
+
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
 
 export default Blog;

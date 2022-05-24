@@ -1,0 +1,13 @@
+.container {
+  max-width: 40%;
+  margin: auto;
+  color: black;
+}
+
+.input-details {
+  margin-bottom: 15px;
+}
+
+.formLabel {
+  margin: 0 4px;
+}

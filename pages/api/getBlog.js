@@ -5,8 +5,6 @@ import * as fs from "fs";
 import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 export default function handler(req, res) {
-
-
   fs.readFile(`blogData/${req.query.slug}.json`, "utf-8", (error, data) => {
     // console.log(JSON.parse(data));
     // blog = data;
@@ -18,5 +16,5 @@ export default function handler(req, res) {
     console.log(req.query.slug);
     res.status(200).send(JSON.parse(data));
   });
-//   res.status(200).send({ name: "Jane Doe" });
+  //   res.status(200).send({ name: "Jane Doe" });
 }
